@@ -1,12 +1,11 @@
-# Local Site Directories
-_site/
-.sass-cache/
-.jekyll-cache/
-.jekyll-metadata
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
 
-# Ruby Gems
-.bundle
-Gemfile.lock
-
-# Log Files
+# Logs
 *.log
+
+# Editor
+.vscode/
+.idea/

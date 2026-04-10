@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Travis Liu – Software Developer</title>
+  <meta name="description" content="Travis Liu is a full-stack software developer building real-time, data-driven web applications." />
+  <meta property="og:title" content="Travis Liu – Software Developer" />
+  <meta property="og:description" content="Full-stack developer building real-time, data-driven web apps." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f0f13;
+      --card: rgba(255,255,255,0.03);
+      --border: rgba(255,255,255,0.08);
+      --text: #f0f0f0;
+      --muted: #9ca3af;
+      --purple: #a78bfa;
+      --blue: #60a5fa;
+      --green: #34d399;
+      --amber: #f59e0b;
+      --radius: 16px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ===== NAV ===== */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 18px 60px;
+      background: rgba(15,15,19,0.80);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-size: 1.05rem; font-weight: 700;
+      background: linear-gradient(120deg, var(--purple), var(--blue));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+    .nav-links a { font-size: 0.875rem; color: var(--muted); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a.active { color: var(--text); }
+    .nav-cta {
+      background: linear-gradient(135deg, #7c3aed, #3b82f6);
+      color: #fff !important;
+      padding: 8px 18px !important;
+      border-radius: 8px;
+      font-weight: 600 !important;
+      font-size: 0.8rem !important;
+    }
+    .nav-cta:hover { opacity: 0.88; }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center; text-align: center;
+      padding: 120px 24px 80px;
+      position: relative; overflow: hidden;
+    }
+    .hero-glow {
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 900px; height: 600px;
+      background: radial-gradient(ellipse at center, rgba(167,139,250,0.10) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(167,139,250,0.10);
+      border: 1px solid rgba(167,139,250,0.25);
+      border-radius: 999px; padding: 6px 18px;
+      font-size: 0.78rem; color: var(--purple); letter-spacing: 0.06em;
+      margin-bottom: 28px;
+    }
+    .hero-pill .dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--green);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 800; line-height: 1.12; letter-spacing: -0.025em;
+      margin-bottom: 20px;
+    }
+    .hero h1 .gradient {
+      background: linear-gradient(120deg, var(--purple), var(--blue), var(--green));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.15rem);
+      color: var(--muted); max-width: 520px; margin: 0 auto 40px;
+    }
+    .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+    /* ===== BUTTONS ===== */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 11px 26px; border-radius: 10px;
+      font-size: 0.875rem; font-weight: 600; cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-primary { background: linear-gradient(135deg, #7c3aed, #3b82f6); color: #fff; }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-outline { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
+
+    /* ===== SECTIONS ===== */
+    section { max-width: 1100px; margin: 0 auto; padding: 100px 24px; }
+    .section-label {
+      font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--purple); margin-bottom: 10px; display: block;
+    }
+    .section-title {
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      font-weight: 800; letter-spacing: -0.02em; margin-bottom: 10px;
+    }
+    .section-desc { color: var(--muted); font-size: 0.96rem; margin-bottom: 44px; }
+    .section-header-row {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 36px;
+    }
+    .see-all { font-size: 0.84rem; color: var(--purple); }
+    .see-all:hover { text-decoration: underline; }
+    .section-divider { max-width: 1100px; margin: 0 auto; height: 1px; background: var(--border); }
+
+    /* ===== PROJECT GRID ===== */
+    .project-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden;
+      transition: border-color 0.25s, transform 0.25s;
+      display: flex; flex-direction: column;
+    }
+    .card:hover { border-color: rgba(167,139,250,0.4); transform: translateY(-4px); }
+    .card-thumb {
+      height: 160px; display: flex; align-items: center;
+      justify-content: center; font-size: 2.8rem;
+    }
+    .thumb-sqlbase   { background: linear-gradient(135deg, #1e1b4b, #2d1b69); }
+    .thumb-busriders { background: linear-gradient(135deg, #022c22, #065f46); }
+    .thumb-scheduler { background: linear-gradient(135deg, #1e3a5f, #1d4ed8); }
+    .thumb-tweeter   { background: linear-gradient(135deg, #0c1a2e, #0d6ba8); }
+    .card-body { padding: 22px; flex: 1; }
+    .card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+    .tag {
+      background: rgba(167,139,250,0.10); color: var(--purple);
+      font-size: 0.7rem; padding: 3px 10px; border-radius: 999px; letter-spacing: 0.04em;
+    }
+    .card-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
+    .card-desc { font-size: 0.855rem; color: var(--muted); line-height: 1.6; }
+    .card-footer {
+      padding: 14px 22px; border-top: 1px solid var(--border);
+      display: flex; gap: 18px; align-items: center;
+    }
+    .card-link { font-size: 0.8rem; color: var(--blue); transition: color 0.2s; }
+    .card-link:hover { color: var(--purple); text-decoration: underline; }
+    .card-link.disabled { color: var(--muted); pointer-events: none; font-style: italic; }
+
+    /* ===== SKILLS ===== */
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 12px;
+    }
+    .skill-item {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 10px; padding: 12px 16px;
+      display: flex; align-items: center; gap: 10px;
+      font-size: 0.84rem; transition: border-color 0.2s, transform 0.2s;
+    }
+    .skill-item:hover { border-color: rgba(167,139,250,0.3); transform: translateY(-2px); }
+
+    /* ===== ABOUT ===== */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .about-text p { color: var(--muted); line-height: 1.8; margin-bottom: 16px; }
+    .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .stat-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px;
+    }
+    .stat-number {
+      font-size: 2.2rem; font-weight: 800; margin-bottom: 4px;
+      background: linear-gradient(120deg, var(--purple), var(--blue));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .stat-number.green { background: linear-gradient(120deg, var(--green), var(--blue)); -webkit-background-clip: text; background-clip: text; }
+    .stat-number.amber { background: none; -webkit-text-fill-color: var(--amber); }
+    .stat-label { font-size: 0.82rem; color: var(--muted); }
+
+    /* ===== BLOG PREVIEW ===== */
+    .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .blog-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px;
+      transition: border-color 0.25s, transform 0.25s;
+      display: flex; flex-direction: column;
+    }
+    .blog-card:hover { border-color: rgba(167,139,250,0.4); transform: translateY(-3px); }
+    .blog-date { font-size: 0.75rem; color: var(--muted); margin-bottom: 10px; }
+    .blog-title { font-size: 0.98rem; font-weight: 700; margin-bottom: 10px; line-height: 1.4; flex: 1; }
+    .blog-excerpt { font-size: 0.84rem; color: var(--muted); line-height: 1.6; }
+    .blog-tag-chip {
+      display: inline-block; margin-top: 14px;
+      background: rgba(96,165,250,0.1); color: var(--blue);
+      font-size: 0.7rem; padding: 3px 10px; border-radius: 999px;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 36px 60px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-left { font-size: 0.85rem; color: var(--muted); }
+    .footer-left .hl { color: var(--purple); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 0.84rem; color: var(--muted); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--text); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      nav { padding: 16px 24px; }
+      .nav-links li:nth-child(n+4) { display: none; }
+      .project-grid { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .blog-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .nav-links li:nth-child(n+3) { display: none; }
+      .blog-grid { grid-template-columns: 1fr; }
+      .about-stats { grid-template-columns: 1fr 1fr; }
+      footer { flex-direction: column; gap: 16px; text-align: center; padding: 28px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Travis Liu</a>
+    <ul class="nav-links">
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="mailto:travisliu708@gmail.com" class="nav-cta">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero" id="home">
+    <div class="hero-glow"></div>
+    <div class="hero-pill"><span class="dot"></span> Available for new opportunities</div>
+    <h1>Hi, I'm Travis.<br><span class="gradient">I build things for the web.</span></h1>
+    <p class="hero-sub">Full-stack developer crafting real-time, data-driven web applications — from database layers to polished user interfaces.</p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn btn-primary">View Projects →</a>
+      <a href="mailto:travisliu708@gmail.com" class="btn btn-outline">Get in Touch</a>
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <span class="section-label">Work</span>
+    <div class="section-header-row">
+      <div>
+        <h2 class="section-title">Featured Projects</h2>
+        <p class="section-desc">A selection of what I've built — more on the way.</p>
+      </div>
+    </div>
+    <div class="project-grid">
+
+      <div class="card">
+        <div class="card-thumb thumb-sqlbase">🗄️</div>
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="tag">React</span><span class="tag">Node.js</span>
+            <span class="tag">Express</span><span class="tag">PostgreSQL</span><span class="tag">Axios</span>
+          </div>
+          <div class="card-title">SQLBase</div>
+          <div class="card-desc">A full-stack PostgreSQL management interface — browse schemas, execute queries, and inspect your data through a clean React-based web UI backed by a Node.js/Express API.</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-link disabled">🚧 Coming Soon</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-thumb thumb-busriders">🚌</div>
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">React</span>
+            <span class="tag">WebSockets</span><span class="tag">Tailwind CSS</span><span class="tag">Chart.js</span>
+          </div>
+          <div class="card-title">BusRiders</div>
+          <div class="card-desc">Real-time multiplayer party game inspired by Jackbox.tv. Players join from any device and compete live through WebSocket-powered game sessions, with dynamic scoring visualized via Chart.js.</div>
+        </div>
+        <div class="card-footer">
+          <a href="https://ride-the-bus.onrender.com" target="_blank" rel="noopener" class="card-link">Live Demo ↗</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-thumb thumb-scheduler">📅</div>
+        <div class="card-body">
+          <div class="card-tags">
+            <!-- TODO: Update with your actual tech stack -->
+            <span class="tag">Full-Stack</span>
+          </div>
+          <div class="card-title">Interview Scheduler</div>
+          <div class="card-desc">A full-stack CRUD web application for managing interview workflows. Create, schedule, and track interviews across candidates and time slots with a clean, intuitive interface.</div>
+        </div>
+        <div class="card-footer">
+          <a href="https://interview-scheduler-fv3u.onrender.com" target="_blank" rel="noopener" class="card-link">Live Demo ↗</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-thumb thumb-tweeter">🐦</div>
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="tag">Express</span><span class="tag">jQuery</span><span class="tag">Node.js</span>
+          </div>
+          <div class="card-title">Tweeter</div>
+          <div class="card-desc">A single-page Twitter clone built before the rebrand — complete with tweet feeds, user profiles, and a familiar social media experience powered by jQuery and Express.</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-link disabled">🚧 Deploying Soon</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <span class="section-label">Stack</span>
+    <h2 class="section-title">Technologies</h2>
+    <p class="section-desc">Languages, frameworks, and tools I work with regularly.</p>
+    <div class="skills-grid">
+      <div class="skill-item">⚡ JavaScript</div>
+      <div class="skill-item">⚛️ React</div>
+      <div class="skill-item">🟢 Node.js</div>
+      <div class="skill-item">🚂 Express</div>
+      <div class="skill-item">🐘 PostgreSQL</div>
+      <div class="skill-item">🌐 HTML/CSS</div>
+      <div class="skill-item">💨 Tailwind CSS</div>
+      <div class="skill-item">🔌 WebSockets</div>
+      <div class="skill-item">📊 Chart.js</div>
+      <div class="skill-item">🐙 Git / GitHub</div>
+      <div class="skill-item">☁️ Render</div>
+      <div class="skill-item">🔷 jQuery</div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <span class="section-label">About</span>
+    <div class="about-grid">
+      <div class="about-text">
+        <h2 class="section-title">A bit about me</h2>
+        <p>I'm a full-stack developer who enjoys building things that are both functional and thoughtful. I like working across the stack — whether that's designing a database schema, wiring up a real-time WebSocket layer, or polishing the last 10% of a UI.</p>
+        <p>I'm especially drawn to real-time systems, developer tooling, and apps that make complex data feel approachable. Currently open to new opportunities.</p>
+        <div class="hero-btns" style="margin-top:28px; justify-content:flex-start;">
+          <a href="mailto:travisliu708@gmail.com" class="btn btn-primary">Say Hello →</a>
+          <a href="blog.html" class="btn btn-outline">Read the Blog</a>
+        </div>
+      </div>
+      <div class="about-stats">
+        <div class="stat-card"><div class="stat-number">4+</div><div class="stat-label">Projects shipped</div></div>
+        <div class="stat-card"><div class="stat-number">10+</div><div class="stat-label">Technologies used</div></div>
+        <div class="stat-card"><div class="stat-number green">2</div><div class="stat-label">Live deployments</div></div>
+        <div class="stat-card"><div class="stat-number amber">∞</div><div class="stat-label">Things still to build</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- BLOG PREVIEW -->
+  <section id="blog">
+    <span class="section-label">Writing</span>
+    <div class="section-header-row">
+      <div>
+        <h2 class="section-title">From the Blog</h2>
+        <p class="section-desc">Thoughts on development, projects, and things I'm learning.</p>
+      </div>
+      <a href="blog.html" class="see-all">All posts →</a>
+    </div>
+    <div class="blog-grid" id="blog-preview-list">
+      <p style="color:var(--muted);font-size:.9rem;">Loading…</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-left">Built by <span class="hl">Travis Liu</span> · © 2026</div>
+    <div class="footer-links">
+      <a href="https://github.com/liucidity" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:travisliu708@gmail.com">Email</a>
+    </div>
+  </footer>
+
+  <script src="posts-data.js"></script>
+  <script>
+    // Active nav on scroll
+    const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+    const sections = document.querySelectorAll('section[id]');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          navLinks.forEach(l => l.classList.remove('active'));
+          const m = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+          if (m) m.classList.add('active');
+        }
+      });
+    }, { threshold: 0.25, rootMargin: '-80px 0px 0px 0px' });
+    sections.forEach(s => obs.observe(s));
+
+    // Blog preview
+    const container = document.getElementById('blog-preview-list');
+    if (window.POSTS && container) {
+      const recent = window.POSTS.slice(0, 3);
+      container.innerHTML = recent.length === 0
+        ? '<p style="color:var(--muted)">No posts yet.</p>'
+        : recent.map(p => `
+            <a href="post.html?slug=${encodeURIComponent(p.slug)}" style="text-decoration:none;color:inherit;">
+              <div class="blog-card">
+                <div class="blog-date">${new Date(p.date+'T00:00:00').toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'})}</div>
+                <div class="blog-title">${p.title}</div>
+                <div class="blog-excerpt">${p.excerpt}</div>
+                ${p.tags?.[0] ? `<span class="blog-tag-chip">${p.tags[0]}</span>` : ''}
+              </div>
+            </a>`).join('');
+    }
+  </script>
+</body>
+</html>
